@@ -77,6 +77,8 @@ def show_text_summary_page():
     if not os.path.exists('checkpoints/distilbert_ext.pt'):
         download_model()
 
+    nltk.download('punkt')
+
     if platform.system() == 'Linux':
         global input_fp, result_fp
         input_fp = '/tmp/input.txt'
