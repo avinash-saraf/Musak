@@ -12,6 +12,7 @@ import nltk
 import urllib.request
 import string
 from gtts import gTTS
+import os
 
 
 def download_model():
@@ -65,6 +66,7 @@ def abs_summary(text, max_len, min_len):
 input_fp = "raw_data/input.txt"
 result_fp = 'results/summary.txt'
 
+
 def ext_summary(max_len):
     model = load_model('distilbert')
     return summarize(input_fp, result_fp, model, max_length=max_len)
@@ -74,6 +76,10 @@ def show_text_summary_page():
      # Download model
     if not os.path.exists('checkpoints/distilbert_ext.pt'):
         download_model()
+
+    if os.name == 'posix':
+        input_fp = '/tmp/input.txt'
+        result_fp = '/tmp/summary.txt'
 
     st.markdown("<h1 style='text-align: center;'>Automatic Text Summarizer</h3> <br> ",unsafe_allow_html=True)
     st.markdown("<h2 style='text-align:center;'>With one click, you can quickly summarize an article, blog, comprehension and more!</h2><br>""",unsafe_allow_html=True)
