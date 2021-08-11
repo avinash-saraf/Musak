@@ -15,6 +15,9 @@ It also answers questions using BERT-large trained by SQuAD dataset (specificall
  - A user can modify the length of summary (Short/Medium/Long), the summary format (Paragraph/Bullet points)
  - A user can request the summary to be generated in speech form (by ticking Text-to-speech box)
 
+## Demo
+The link for app demonstration: https://drive.google.com/file/d/1weTxTdTeAJhcPGdQKBGpwqVr-_Aqa55T/view
+
 ## Setup 
  - Clone the repository using git clone https://github.com/avinash-saraf/Musak.git
  - Once inside the project directory, (assuming you have a working Python > 3.8 environment), run pip install -r requirements.txt
@@ -29,4 +32,5 @@ It also answers questions using BERT-large trained by SQuAD dataset (specificall
 
 ## Gifs
 ![summarizer-demo](https://github.com/avinash-saraf/Musak/blob/main/gifs/summary_url_gif.gif "Summarizing newspaper article")
+<img src="https://github.com/avinash-saraf/Musak/blob/main/gifs/summary_url_gif.gif" heigth=600 width=600>
 Summarizing newspaper article with 'extract' mode
