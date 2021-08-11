@@ -26,3 +26,7 @@ It also answers questions using BERT-large trained by SQuAD dataset (specificall
   pip install -r requirements.txt
   streamlit run app.py
   ```
+
+## Gifs
+![summarizer-demo](https://github.com/avinash-saraf/Musak/blob/main/gifs/summary-url-gif.gif "Summarizing newspaper article")
+Summarizing newspaper article with 'extract' mode
