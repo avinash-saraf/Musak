@@ -31,6 +31,5 @@ The link for app demonstration: https://drive.google.com/file/d/1weTxTdTeAJhcPGd
   ```
 
 ## Gifs
-![summarizer-demo](https://github.com/avinash-saraf/Musak/blob/main/gifs/summary_url_gif.gif "Summarizing newspaper article")
-<img src="https://github.com/avinash-saraf/Musak/blob/main/gifs/summary_url_gif.gif" heigth=600 width=600>
+<img src="https://github.com/avinash-saraf/Musak/blob/main/gifs/summary_url_gif.gif" heigth=600 width=600> <br>
 Summarizing newspaper article with 'extract' mode
