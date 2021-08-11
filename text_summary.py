@@ -12,7 +12,7 @@ import nltk
 import urllib.request
 import string
 from gtts import gTTS
-import os
+import platform
 
 
 def download_model():
@@ -77,7 +77,8 @@ def show_text_summary_page():
     if not os.path.exists('checkpoints/distilbert_ext.pt'):
         download_model()
 
-    if os.name == 'posix':
+    if platform.system() == 'Linux':
+        global input_fp, result_fp
         input_fp = '/tmp/input.txt'
         result_fp = '/tmp/summary.txt'
 
