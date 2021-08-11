@@ -57,7 +57,7 @@ def load_model(model_type):
     return model
 
 
-@st.cache(suppress_st_warning=True, show_spinner=False)
+#@st.cache(suppress_st_warning=True, show_spinner=False)
 def abs_summary(text, max_len, min_len):
     summarizer = pipeline('summarization')
     return summarizer(text, max_length = max_len, min_length = min_len, do_sample=False)
