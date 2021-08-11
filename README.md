@@ -8,6 +8,12 @@ It allows the user to select between both types of summarization techniques beca
 
 It also answers questions using BERT-large trained by SQuAD dataset (specifically for question answering purposes).
 
+## Features
+ - A user can input either raw text, a URL (user can tick if URL inputted is newspaper article), or a PDF (user can specify a page range) 
+ - A user can perform text-summarization and/or question answering
+ - A user can choose which type of summary should be generated (Abstract/Extract)
+ - A user can modify the length of summary (Short/Medium/Long), the summary format (Paragraph/Bullet points)
+ - A user can request the summary to be generated in speech form (by ticking Text-to-speech box)
 
 ## Setup 
  - Clone the repository using git clone https://github.com/avinash-saraf/Musak.git
