@@ -16,7 +16,7 @@ It also answers questions using BERT-large trained by SQuAD dataset (specificall
  - A user can request the summary to be generated in speech form (by ticking Text-to-speech box)
 
 ## Demo
-The link for app demonstration: https://drive.google.com/file/d/1weTxTdTeAJhcPGdQKBGpwqVr-_Aqa55T/view
+The link for app demonstration: https://drive.google.com/file/d/1weTxTdTeAJhcPGdQKBGpwqVr-_Aqa55T/view?usp=sharing
 
 ## Setup 
  - Clone the repository using git clone https://github.com/avinash-saraf/Musak.git
