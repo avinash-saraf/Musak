@@ -1,10 +1,12 @@
 # Musak
-Musak is an automatic text summarization and question-answering tool. UI built using Streamlit.
-Auto text-summarisation has two modes: 
-  - Abstract: Performs abstractive summarization using the summarization pipeline by HuggingFace (uses BART model)
+Musak is an automatic text summarization and question-answering tool. UI built using Streamlit. <br>
+Its auto text-summarisation feature has two modes: 
+  - Abstract: Performs abstractive summarization using the summarization pipeline by HuggingFace (uses BART model). 
   - Extract: Performs extractive summarization using the pre-trained DistilBERT Model (trained and fine-tuned by https://github.com/chriskhanhtran/bert-extractive-summarization)
 
-Question-answering using BERT-large trained by SQuAD dataset (specifically for question answering purposes)
+It allows the user to select between both types of summarization techniques because one may perform better over the other for certain types of input text. 
+
+It also answers questions using BERT-large trained by SQuAD dataset (specifically for question answering purposes).
 
 
 ## Setup 
