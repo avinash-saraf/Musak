@@ -19,15 +19,15 @@ It also answers questions using BERT-large trained by SQuAD dataset (specificall
 The link for app demonstration: https://drive.google.com/file/d/1weTxTdTeAJhcPGdQKBGpwqVr-_Aqa55T/view?usp=sharing
 
 ## Setup 
- - Clone the repository using git clone https://github.com/avinash-saraf/Musak.git
- - Once inside the project directory, (assuming you have a working Python > 3.8 environment), run pip install -r requirements.txt
- - Run the webapp using streamlit run app.py
-
   ```
   git clone https://github.com/avinash-saraf/Musak.git
   cd Musak
   pip install -r requirements.txt
   streamlit run app.py
+  ```
+  Download pre-trained checkpoints:
+  ```
+  wget -O "checkpoints/distilbert_ext.pt" "https://www.googleapis.com/drive/v3/files/1WxU7cHECfYaU32oTM0JByTRGS5f6SYEF?alt=media&key=AIzaSyCmo6sAQ37OK8DK4wnT94PoLx5lx-7VTDE" 
   ```
 
 ## Gifs
