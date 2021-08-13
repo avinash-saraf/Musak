@@ -84,8 +84,8 @@ def show_text_summary_page():
     st.markdown("<h2 style='text-align:center;'>With one click, you can quickly summarize an article, blog, comprehension and more!</h2><br>""", unsafe_allow_html=True)
 
     global input_option
-    input_option = st.select_slider(
-        "Input Type:", ("Raw Text", "URL", "PDF"), value="URL")
+    input_option = st.radio(
+        "Input Type:", ("Raw Text", "URL", "PDF"), value="Raw Text")
 
     if input_option == "Raw Text":
         st.markdown(
@@ -147,7 +147,7 @@ def show_text_summary_page():
                 st.error(msg[1])
             else:
                 summary_for_tts, summary = generate_ext_summary(
-                    msg[1]) if summary_type == "Extract" else generate_abs_summary(msg[1])
+                    msg[1])  # if summary_type == "Extract" else generate_abs_summary(msg[1])
 
     if summary != "":
         st.markdown("<h3 style='text-align: center;'>Summary</h3>",
