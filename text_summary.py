@@ -85,7 +85,7 @@ def show_text_summary_page():
 
     global input_option
     input_option = st.radio(
-        "Input Type:", ("Raw Text", "URL", "PDF"), value="Raw Text")
+        "Input Type:", ("Raw Text", "URL", "PDF"))
 
     if input_option == "Raw Text":
         st.markdown(
