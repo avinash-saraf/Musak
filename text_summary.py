@@ -69,7 +69,6 @@ result_fp = './results/summary.txt'
 
 
 def ext_summary(max_len):
-    model = load_model('mobilebert')
     return summarize(input_fp, result_fp, model, max_length=max_len)
 
 
@@ -78,6 +77,9 @@ def show_text_summary_page():
     # Download model
     if not os.path.exists('checkpoints/mobilebert_ext.pt'):
         download_model()
+
+    global model
+    model = load_model('mobilebert')
 
     st.markdown("<h1 style='text-align: center;'>Automatic Text Summarizer</h3> <br> ",
                 unsafe_allow_html=True)
@@ -100,9 +102,6 @@ def show_text_summary_page():
         URL = st.text_input("")
         if URL != "":
             st.markdown(f"[*Click Here to Read Original Article*]({URL})")
-        st.text(" ")
-        global news_article
-        news_article = st.checkbox("Newspaper article")
 
     elif input_option == "PDF":
         st.markdown("<h3 style='text-align: center;'>Upload PDF</h3>",
@@ -170,14 +169,7 @@ def get_input_data():
             TEXT = TEXT_INPUT
     elif input_option == "URL":
         if URL != "":
-            if news_article:
-                TEXT = getArticleText(URL)
-            else:
-                r = requests.get(URL)
-                soup = bs4.BeautifulSoup(r.text, 'html.parser')
-                results = soup.find_all(['h1', 'p'])
-                text = [result.text for result in results]
-                TEXT = ' '.join(text)
+            TEXT = getArticleText(URL)
         else:
             return ["Error", "URL Missing"]
 
@@ -223,8 +215,6 @@ def generate_abs_summary(TEXT):
 
     for index in range(len(blocks)):
         blocks[index] = ' '.join(blocks[index])
-
-    summarizer = pipeline('summarization')
 
     min_len = 50
     max_len = 130
