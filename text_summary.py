@@ -27,8 +27,8 @@ def download_model():
         progress_bar = st.progress(0)
 
         file_path = 'checkpoints/distilbert_ext.pt'
-        # if platform.system() == "Linux":
-        #     file_path = '/app/musak/checkpoints/distilbert_ext.py'
+        if platform.system() == "Linux":
+            file_path = '/tmp/checkpoints/distilbert_ext.py'
 
         with open(file_path, 'wb') as output_file:
             with urllib.request.urlopen(url) as response:
