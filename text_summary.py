@@ -25,7 +25,12 @@ def download_model():
     try:
         weights_warning = st.warning("Downloading checkpoint...")
         progress_bar = st.progress(0)
-        with open('checkpoints/distilbert_ext.pt', 'wb') as output_file:
+
+        file_path = 'checkpoints/distilbert_ext.pt'
+        if platform.system() == "Linux":
+            file_path = '/app/musak/checkpoints/distilbert_ext.py'
+
+        with open(file_path, 'wb') as output_file:
             with urllib.request.urlopen(url) as response:
                 length = int(response.info()["Content-Length"])
                 counter = 0.0
