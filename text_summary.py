@@ -5,6 +5,7 @@ import requests
 import pdfplumber
 from newspaper import Article
 import torch
+from transformers.pipelines.base import Pipeline
 from models.model_builder import ExtSummarizer
 from ext_sum import summarize
 import os
@@ -16,7 +17,7 @@ import platform
 
 
 def download_model():
-    nltk.download('punkt')
+    #nltk.download('punkt')
     nltk.download('popular')
     url = 'https://www.googleapis.com/drive/v3/files/1WxU7cHECfYaU32oTM0JByTRGS5f6SYEF?alt=media&key=AIzaSyCmo6sAQ37OK8DK4wnT94PoLx5lx-7VTDE'
 
@@ -27,9 +28,7 @@ def download_model():
         progress_bar = st.progress(0)
 
         file_path = 'checkpoints/distilbert_ext.pt'
-        if platform.system() == "Linux":
-            file_path = '/tmp/checkpoints/distilbert_ext.py'
-
+    
         with open(file_path, 'wb') as output_file:
             with urllib.request.urlopen(url) as response:
                 length = int(response.info()["Content-Length"])
@@ -62,14 +61,13 @@ def load_model(model_type):
     return model
 
 
-#@st.cache(suppress_st_warning=True, show_spinner=False)
-def abs_summary(text, max_len, min_len):
-    summarizer = pipeline('summarization')
-    return summarizer(text, max_length = max_len, min_length = min_len, do_sample=False)
+@st.cache(suppress_st_warning=True, show_spinner=False,hash_funcs={Pipeline: id})
+def abs_summary_model():
+    return pipeline('summarization')
 
 
-input_fp = "raw_data/input.txt"
-result_fp = 'results/summary.txt'
+input_fp = "./raw_data/input.txt"
+result_fp = './results/summary.txt'
 
 
 def ext_summary(max_len):
@@ -82,12 +80,7 @@ def show_text_summary_page():
     if not os.path.exists('checkpoints/distilbert_ext.pt'):
         download_model()
 
-    nltk.download('punkt')
-
-    if platform.system() == 'Linux':
-        global input_fp, result_fp
-        input_fp = '/tmp/input.txt'
-        result_fp = '/tmp/summary.txt'
+    #nltk.download('punkt')
 
     st.markdown("<h1 style='text-align: center;'>Automatic Text Summarizer</h3> <br> ",unsafe_allow_html=True)
     st.markdown("<h2 style='text-align:center;'>With one click, you can quickly summarize an article, blog, comprehension and more!</h2><br>""",unsafe_allow_html=True)
@@ -237,7 +230,8 @@ def generate_abs_summary(TEXT):
         max_len = 230
 
     try:
-        summary_dict = abs_summary(blocks, max_len, min_len)
+        model = abs_summary_model()
+        summary_dict = model(TEXT, max_length=max_len, min_length=min_len, do_sample=False)
     except IndexError:
         st.error("Error: unidentifiable text found (Possible cause: end of sentence not found). Instead, opt for EXTRACT type summary ")
     else:
