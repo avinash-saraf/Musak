@@ -2,7 +2,9 @@ import torch
 import torch.nn as nn
 from torch.nn.init import xavier_uniform_
 from transformers import BertModel, BertConfig, DistilBertConfig, DistilBertModel
+from models.MobileBert.modeling_mobilebert import MobileBertConfig, MobileBertModel
 from models.encoder import ExtTransformerEncoder
+
 
 class Bert(nn.Module):
     def __init__(self, bert_type='bertbase'):
@@ -14,13 +16,18 @@ class Bert(nn.Module):
             self.model = BertModel(configuration)
         elif bert_type == 'distilbert':
             configuration = DistilBertConfig()
-            self.model = DistilBertModel(configuration)           
+            self.model = DistilBertModel(configuration)
+        elif bert_type == 'mobilebert':
+            configuration = MobileBertConfig.from_pretrained(
+                'checkpoints/mobilebert')
+            self.model = MobileBertModel(configuration)
 
     def forward(self, x, segs, mask):
         if self.bert_type == 'distilbert':
             top_vec = self.model(input_ids=x, attention_mask=mask)[0]
         else:
-            top_vec, _ = self.model(x, attention_mask=mask, token_type_ids=segs)
+            top_vec, _ = self.model(
+                x, attention_mask=mask, token_type_ids=segs)
         return top_vec
 
 

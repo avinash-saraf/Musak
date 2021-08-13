@@ -13,12 +13,11 @@ import nltk
 import urllib.request
 import string
 from gtts import gTTS
-import platform
 
 
 def download_model():
     nltk.download('popular')
-    url = 'https://www.googleapis.com/drive/v3/files/1WxU7cHECfYaU32oTM0JByTRGS5f6SYEF?alt=media&key=AIzaSyCmo6sAQ37OK8DK4wnT94PoLx5lx-7VTDE'
+    url = 'https://www.googleapis.com/drive/v3/files/1umMOXoueo38zID_AKFSIOGxG9XjS5hDC?alt=media&key=AIzaSyCmo6sAQ37OK8DK4wnT94PoLx5lx-7VTDE'
 
     # These are handles to two visual elements to animate.
     weights_warning, progress_bar = None, None
@@ -26,9 +25,7 @@ def download_model():
         weights_warning = st.warning("Downloading checkpoint...")
         progress_bar = st.progress(0)
 
-        file_path = 'checkpoints/distilbert_ext.pt'
-
-        with open(file_path, 'wb') as output_file:
+        with open('checkpoints/mobilebert_ext.pt', 'wb') as output_file:
             with urllib.request.urlopen(url) as response:
                 length = int(response.info()["Content-Length"])
                 counter = 0.0
@@ -72,14 +69,14 @@ result_fp = './results/summary.txt'
 
 
 def ext_summary(max_len):
-    model = load_model('distilbert')
+    model = load_model('mobilebert')
     return summarize(input_fp, result_fp, model, max_length=max_len)
 
 
 def show_text_summary_page():
 
     # Download model
-    if not os.path.exists('checkpoints/distilbert_ext.pt'):
+    if not os.path.exists('checkpoints/mobilebert_ext.pt'):
         download_model()
 
     st.markdown("<h1 style='text-align: center;'>Automatic Text Summarizer</h3> <br> ",
